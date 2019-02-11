@@ -1,3 +1,4 @@
+const Web3 = require("web3");
 // import BandProtocolClient from "band.js";
 const BandProtocolClient = require("band.js");
 
