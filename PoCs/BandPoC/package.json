@@ -1,0 +1,17 @@
+{
+  "name": "BandPoC",
+  "version": "1.0.0",
+  "description": "implementation following band protocol development documentation",
+  "main": "index.js",
+  "scripts": {
+    "token-issuance": "node tokenIssuance.js",
+    "user-rewards": "node userRewards.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "RychardHunt",
+  "license": "ISC",
+  "dependencies": {
+    "band.js": "^1.0.17",
+    "web3": "^1.0.0-beta.46"
+  }
+}
