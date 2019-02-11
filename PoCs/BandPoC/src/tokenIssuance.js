@@ -1,12 +1,12 @@
 const Web3 = require("web3");
-// import BandProtocolClient from "band.js";
-const BandProtocolClient = require("band.js");
+import BandProtocolClient from "band.js";
 
 const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
 
-const bandClient = await BandProtocolClient.make({
-  provider: web3
-});
+const bandClient = async () =>
+  await BandProtocolClient.make({
+    provider: web3
+  });
 
 // Deploy a new community to Band Protocol
 const commClient = bandClient.deployCommunity(
@@ -32,32 +32,40 @@ const commClient = bandClient.deployCommunity(
 console.log(commClient.getAddress());
 
 // Get my Band balance
-console.log(await bandClient.getBalance());
+console.log(async () => await bandClient.getBalance());
 // Get my community token balance
-console.log(await commClient.getBalance());
+console.log(async () => await commClient.getBalance());
 
 // Buy 10 community tokens with price limit of 1000 Band tokens. Transaction
 // will fail if buying 10 community tokens costs more than 1000 Band tokens.
-await (await commClient.createBuyTransaction(
-  "10000000000000000000",
-  "1000000000000000000000"
-)).send();
+async () =>
+  await (async () =>
+    await commClient.createBuyTransaction(
+      "10000000000000000000",
+      "1000000000000000000000"
+    )).send();
 
 // Sell 10 community tokens with price limit of 10 Band tokens. Transaction
 // will fail if selling 10 community tokens returns less than 10 Band tokens.
-await (await commClient.createBuyTransaction(
-  "10000000000000000000",
-  "10000000000000000000"
-)).send();
+async () =>
+  await (async () =>
+    await commClient.createBuyTransaction(
+      "10000000000000000000",
+      "10000000000000000000"
+    )).send();
 
 // Transfer 100 Band tokens to the DEADBEEF address
-await (await bandClient.createTransferTransaction(
-  "0xDeaDbeefdEAdbeefdEadbEEFdeadbeEFdEaDbeeF",
-  "100000000000000000000"
-)).send();
+async () =>
+  await (async () =>
+    await bandClient.createTransferTransaction(
+      "0xDeaDbeefdEAdbeefdEadbEEFdeadbeEFdEaDbeeF",
+      "100000000000000000000"
+    )).send();
 
 // Transfer 100 community tokens to the DEADBEEF address
-await (await commClient.createTransferTransaction(
-  "0xDeaDbeefdEAdbeefdEadbEEFdeadbeEFdEaDbeeF",
-  "100000000000000000000"
-)).send();
+async () =>
+  await (async () =>
+    await commClient.createTransferTransaction(
+      "0xDeaDbeefdEAdbeefdEadbEEFdeadbeEFdEaDbeeF",
+      "100000000000000000000"
+    )).send();
